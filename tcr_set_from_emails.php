@@ -19,13 +19,13 @@
 
 			function __construct() {
 
-				add_filter( 'wp_mail_from'       ,'name name');
-				add_filter( 'wp_mail_from_name'  ,'name@domain.tld');
-				add_action('phpmailer_init','webriti_phpmailer_init_smtp');	
+				add_filter( 'wp_mail_from'       , 'name name');
+				add_filter( 'wp_mail_from_name'  , 'name@domain.tld');
+				add_action('phpmailer_init'      , array ( $this , 'tcr_phpmailer_init_smtp') );	
 			}
 			
 			// This code is copied, from wp-includes/pluggable.php as at version 2.2.2
-			function webriti_phpmailer_init_smtp($phpmailer) {	
+			function tcr_phpmailer_init_smtp($phpmailer) {	
 				// Set the mailer type as per config above, this overrides the already called isMail method
 				// Set Mailer value
 				$phpmailer->Mailer = get_option('mailer');
